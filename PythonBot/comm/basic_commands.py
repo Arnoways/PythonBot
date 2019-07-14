@@ -7,6 +7,7 @@ import re
 import requests
 import wikipedia
 from discord.ext import commands
+from random import choice
 import hashlib
 
 from database import general as dbcon
@@ -231,6 +232,18 @@ class Basics:
                         etext += c
 
         return await self.bot.send_message(ctx.message.channel, etext)
+
+    @commands.command(pass_context=1, help="mOcK A meSsAGe")
+    async def mock(self, ctx, *args):
+        if not await self.bot.pre_command(message=ctx.message, command='mock'):
+            return
+        text = " ".join(args)
+        if not text:
+            await self.bot.say("Please give me stuff to mock...")
+            return
+        text = ''.join(choice((str.upper, str.lower))(c) for c in text)
+        await self.bot.say("{}".format(text))
+        return
 
     # {prefix}face
     @commands.command(pass_context=1, help="Make a random face!")
