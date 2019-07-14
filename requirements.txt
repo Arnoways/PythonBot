@@ -1,6 +1,6 @@
 setuptools
 requests
-discord
+discord==0.16.12
 pillow
 wikipedia
 urbanpyctionary
